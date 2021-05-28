@@ -17,6 +17,7 @@ public protocol TasksAPI {
       serviceAccount: String,
       httpMethod: String,
       url: String,
+      headers: [String: String],
       body: Data) -> EventLoopFuture<EmptyResponse>
 }
 
@@ -28,6 +29,7 @@ struct CreateRequestHttp: Codable {
   public var url: String
   public var httpMethod: String
   public var body: String
+  public var headers: [String: String]
   public var oidcToken: CreateRequestOidc
 }
 
@@ -54,6 +56,7 @@ public final class GoogleCloudTasksApi: TasksAPI {
     serviceAccount: String,
     httpMethod: String,
     url: String,
+    headers: [String: String],
     body: Data) -> EventLoopFuture<EmptyResponse> {
 
     let project = "projects/\(self.request.project)"
@@ -68,6 +71,7 @@ public final class GoogleCloudTasksApi: TasksAPI {
           url: url,
           httpMethod: httpMethod,
           body: body.base64EncodedString(),
+          headers: headers,
           oidcToken: CreateRequestOidc(
             serviceAccountEmail: serviceAccount
           )
