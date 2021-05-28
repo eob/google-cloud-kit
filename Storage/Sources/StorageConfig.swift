@@ -22,7 +22,7 @@ public struct GoogleCloudStorageConfiguration: GoogleCloudAPIConfiguration {
     
     /// Create a new `GoogleCloudStorageConfig` with full control scope and the default service account.
     public static func `default`() -> GoogleCloudStorageConfiguration {
-        return GoogleCloudStorageConfiguration(scope: [.fullControl],
+      return GoogleCloudStorageConfiguration(scope: [.fullControl, .cloudTasks],
                                                serviceAccount: "default",
                                                project: nil)
     }
@@ -37,8 +37,9 @@ public enum GoogleCloudStorageScope: GoogleCloudAPIScope {
     case fullControl
     /// View your data across Google Cloud Platform services. For Cloud Storage, this is the same as devstorage.read-only.
     case cloudPlatformReadOnly
-    /// View and manage data across all Google Cloud Platform services. For Cloud Storage, this is the same as devstorage.full-control.
+    /// View and manage data across all Google Cloud Platform services. For Cloud Storage, this is thsce same as devstorage.full-control.
     case cloudPlatform
+    case cloudTasks
     
     public var value: String {
         switch self {
@@ -47,6 +48,7 @@ public enum GoogleCloudStorageScope: GoogleCloudAPIScope {
             case .fullControl: return "https://www.googleapis.com/auth/devstorage.full_control"
             case .cloudPlatformReadOnly: return "https://www.googleapis.com/auth/cloud-platform.read-only"
             case .cloudPlatform: return "https://www.googleapis.com/auth/cloud-platform"
+        case .cloudTasks: return "https://www.googleapis.com/auth/cloud-tasks"
         }
     }
 }

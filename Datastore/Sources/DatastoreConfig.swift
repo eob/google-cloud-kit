@@ -14,7 +14,7 @@ public struct GoogleCloudDatastoreConfiguration: GoogleCloudAPIConfiguration {
     
     /// Create a new `GoogleCloudDatastoreConfiguration` with datastore scope and the default service account.
     public static func `default`() -> GoogleCloudDatastoreConfiguration {
-        return GoogleCloudDatastoreConfiguration(scope: [.datastore],
+      return GoogleCloudDatastoreConfiguration(scope: [.datastore],
                                                  serviceAccount: "default",
                                                  project: nil)
     }
