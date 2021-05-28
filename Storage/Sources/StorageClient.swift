@@ -18,6 +18,7 @@ public final class GoogleCloudStorageClient {
     public var objectAccessControl: ObjectAccessControlsAPI
     public var notifications: StorageNotificationsAPI
     public var object: StorageObjectAPI
+    public var tasks: TasksAPI
     var storageRequest: GoogleCloudStorageRequest
     
     /// Initialize a client for interacting with the Google Cloud Storage API
@@ -59,6 +60,7 @@ public final class GoogleCloudStorageClient {
         objectAccessControl = GoogleCloudStorageObjectAccessControlsAPI(request: storageRequest)
         notifications = GoogleCloudStorageNotificationsAPI(request: storageRequest)
         object = GoogleCloudStorageObjectAPI(request: storageRequest)
+        tasks = GoogleCloudTasksApi(request: storageRequest)
     }
     
     /// Hop to a new eventloop to execute requests on.
