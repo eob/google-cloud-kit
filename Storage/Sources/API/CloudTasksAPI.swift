@@ -20,7 +20,7 @@ public protocol TasksAPI {
       body: Data) -> EventLoopFuture<EmptyResponse>
 }
 
-struct CreateRequestOdic: Codable {
+struct CreateRequestOidc: Codable {
   public var serviceAccountEmail: String
 }
 
@@ -28,7 +28,7 @@ struct CreateRequestHttp: Codable {
   public var url: String
   public var httpMethod: String
   public var body: String
-  public var odicToken: CreateRequestOdic
+  public var oidcToken: CreateRequestOidc
 }
 
 struct CreateRequestTask: Codable {
@@ -68,7 +68,7 @@ public final class GoogleCloudTasksApi: TasksAPI {
           url: url,
           httpMethod: httpMethod,
           body: body.base64EncodedString(),
-          odicToken: CreateRequestOdic(
+          oidcToken: CreateRequestOidc(
             serviceAccountEmail: serviceAccount
           )
         )
