@@ -60,7 +60,7 @@ public final class GoogleCloudTasksApi: TasksAPI {
     let location = "locations/\(location)"
     let queue = "queues/\(queue)"
     let frag = "\(project)/\(location)/\(queue)"
-    let url = "\(endpoint)\(frag)"
+    let url = "\(endpoint)\(frag)/tasks"
     
     let req = CreateRequest(
       task: CreateRequestTask(
