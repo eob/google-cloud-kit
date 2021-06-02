@@ -58,12 +58,6 @@ public final class GoogleCloudTasksApi: TasksAPI {
     url: String,
     headers: [String: String],
     body: Data) -> EventLoopFuture<EmptyResponse> {
-
-    let project = "projects/\(self.request.project)"
-    let location = "locations/\(location)"
-    let queue = "queues/\(queue)"
-    let frag = "\(project)/\(location)/\(queue)"
-    let url = "\(endpoint)\(frag)/tasks"
     
     let req = CreateRequest(
       task: CreateRequestTask(
@@ -79,12 +73,18 @@ public final class GoogleCloudTasksApi: TasksAPI {
       ),
       responseView: "BASIC"
     )
-    
+
+    let project = "projects/\(self.request.project)"
+    let location = "locations/\(location)"
+    let queue = "queues/\(queue)"
+    let frag = "\(project)/\(location)/\(queue)"
+    let googleUrl = "\(endpoint)\(frag)/tasks"
+
     do {
       let data = try encoder.encode(req)
       return request.send(
         method: .POST,
-        path: url,
+        path: googleUrl,
         body: .data(data)
       )
     } catch {
